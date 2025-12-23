@@ -1,0 +1,5 @@
+{
+  "name": "GreenOps: Garden",
+  "description": "A retro pixel-art farming simulation where you manage crops and trees across different biomes to maximize Gold Per Second.",
+  "requestFramePermissions": []
+}

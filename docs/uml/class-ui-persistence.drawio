@@ -1,0 +1,63 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="ui-persistence" name="UI & Persistence">
+    <mxGraphModel dx="1000" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="app" value="App (React)&#xa;- state: gold, level, plants, gps, biome&#xa;+ syncState()&#xa;+ UI interactions (buy/upgrade/sell)" style="shape=swimlane;childLayout=stackLayout;horizontal=0;rounded=0;strokeColor=#000000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="60" y="40" width="220" height="200" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="pixel" value="Pixel Components&#xa;PixelCard / PixelButton / PixelModal / PixelToast" style="shape=swimlane;childLayout=stackLayout;horizontal=0;rounded=0;strokeColor=#000000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="60" y="280" width="220" height="140" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="gc" value="GameController (Service)" style="shape=rectangle;rounded=0;strokeColor=#000000;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="120" width="160" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="data" value="gameData.ts&#xa;PLANTS_DATA / UPGRADES_DATA / GARDEN_UPGRADES_DATA / ACHIEVEMENTS_DATA" style="shape=swimlane;childLayout=stackLayout;horizontal=0;rounded=0;strokeColor=#000000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="360" y="260" width="220" height="160" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="isp" value="ISaveProvider" style="shape=rectangle;rounded=0;strokeColor=#000000;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="120" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="lsp" value="LocalStorageProvider" style="shape=rectangle;rounded=0;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="640" y="220" width="160" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="storage" value="Browser localStorage" style="shape=rectangle;rounded=0;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="640" y="320" width="160" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="app_gc" value="calls public API" style="endArrow=block;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="app" target="gc">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="app_pixel" value="renders with" style="endArrow=open;endFill=0;strokeColor=#000000;dashed=1;" edge="1" parent="1" source="app" target="pixel">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="gc_data" value="reads templates" style="endArrow=open;endFill=0;strokeColor=#000000;" edge="1" parent="1" source="gc" target="data">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="gc_isp" value="DI via ctor" style="endArrow=open;endFill=0;strokeColor=#000000;" edge="1" parent="1" source="gc" target="isp">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="isp_lsp" value="implements" style="endArrow=open;endFill=0;strokeColor=#000000;dashed=1;" edge="1" parent="1" source="lsp" target="isp">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="lsp_storage" value="persists to" style="endArrow=block;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="lsp" target="storage">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
+

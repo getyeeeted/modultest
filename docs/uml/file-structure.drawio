@@ -1,0 +1,87 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="structure" name="Repo-Struktur">
+    <mxGraphModel dx="1000" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="root" value="greenops_-garden/" style="shape=folder;rounded=0;strokeColor=#000000;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="40" width="200" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="src" value="logic/" style="shape=folder;rounded=0;strokeColor=#000000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="320" y="40" width="140" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="components" value="components/" style="shape=folder;rounded=0;strokeColor=#000000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="320" y="100" width="140" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="data" value="data/" style="shape=folder;rounded=0;strokeColor=#000000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="320" y="160" width="140" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="tests" value="tests/" style="shape=folder;rounded=0;strokeColor=#000000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="320" y="220" width="140" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="docs" value="docs/uml/" style="shape=folder;rounded=0;strokeColor=#000000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="320" y="280" width="140" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="files_logic" value="GameController.ts&#xa;Garden.ts&#xa;Plant.ts&#xa;Crop.ts&#xa;Tree.ts&#xa;ISaveProvider.ts&#xa;LocalStorageProvider.ts" style="shape=rectangle;rounded=0;strokeColor=#000000;fontSize=10;align=left;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="500" y="40" width="220" height="160" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="files_components" value="GameAssets.tsx&#xa;PixelComponents.tsx" style="shape=rectangle;rounded=0;strokeColor=#000000;fontSize=10;align=left;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="500" y="100" width="220" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="files_data" value="gameData.ts" style="shape=rectangle;rounded=0;strokeColor=#000000;fontSize=10;align=left;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="500" y="180" width="200" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="files_tests" value="garden.test.ts&#xa;unit/gameController.test.ts" style="shape=rectangle;rounded=0;strokeColor=#000000;fontSize=10;align=left;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="500" y="240" width="220" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="files_docs" value="class-core.drawio&#xa;class-ui-persistence.drawio&#xa;file-structure.drawio&#xa;class-diagram.md&#xa;sequence-diagram.md" style="shape=rectangle;rounded=0;strokeColor=#000000;fontSize=10;align=left;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="500" y="320" width="240" height="100" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="root_src" value="" style="endArrow=block;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="root" target="src">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="root_components" value="" style="endArrow=block;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="root" target="components">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="root_data" value="" style="endArrow=block;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="root" target="data">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="root_tests" value="" style="endArrow=block;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="root" target="tests">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="root_docs" value="" style="endArrow=block;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="root" target="docs">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="src_files" value="" style="endArrow=open;endFill=0;strokeColor=#000000;dashed=1;" edge="1" parent="1" source="src" target="files_logic">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="components_files" value="" style="endArrow=open;endFill=0;strokeColor=#000000;dashed=1;" edge="1" parent="1" source="components" target="files_components">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="data_files" value="" style="endArrow=open;endFill=0;strokeColor=#000000;dashed=1;" edge="1" parent="1" source="data" target="files_data">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="tests_files" value="" style="endArrow=open;endFill=0;strokeColor=#000000;dashed=1;" edge="1" parent="1" source="tests" target="files_tests">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="docs_files" value="" style="endArrow=open;endFill=0;strokeColor=#000000;dashed=1;" edge="1" parent="1" source="docs" target="files_docs">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
+
