@@ -21,8 +21,14 @@ describe('GameController core logic', () => {
 
     controller.purchasePlant('p1'); // cost 10
 
-    expect(controller.getPlants().length).toBe(1);
-    expect(controller.gold).toBe(990);
+    const plantsCount = controller.getPlants().length;
+    const expectedPlantsCount = 1;
+    const expectedGold = 990;
+    console.log(`\n[GameController Core] Test: "purchases a plant when affordable and decreases gold"`);
+    console.log(`  Expected: 1 plant, ${expectedGold} gold`);
+    console.log(`  Result:   ${plantsCount} plant(s), ${controller.gold} gold`);
+    expect(plantsCount).toBe(expectedPlantsCount);
+    expect(controller.gold).toBe(expectedGold);
   });
 
   it('respects garden capacity when purchasing', () => {
@@ -32,7 +38,12 @@ describe('GameController core logic', () => {
     controller.purchasePlant('p1');
     controller.purchasePlant('p2'); // should be blocked (garden full)
 
-    expect(controller.getPlants().length).toBe(1);
+    const plantsCount = controller.getPlants().length;
+    const expected = 1;
+    console.log(`\n[GameController Core] Test: "respects garden capacity when purchasing"`);
+    console.log(`  Expected: ${expected} plant (garden full at size 1)`);
+    console.log(`  Result:   ${plantsCount} plant(s)`);
+    expect(plantsCount).toBe(expected);
   });
 
   it('upgrades an existing plant and adjusts gold/value correctly', () => {
@@ -44,6 +55,9 @@ describe('GameController core logic', () => {
     controller.upgradePlant(plant.id);
     const upgraded = controller.getPlants()[0];
 
+    console.log(`\n[GameController Core] Test: "upgrades an existing plant and adjusts gold/value correctly"`);
+    console.log(`  Expected: Level 2, Value ${10 + upgradeCost}, Gold ${1_000 - 10 - upgradeCost}`);
+    console.log(`  Result:   Level ${upgraded.level}, Value ${upgraded.value}, Gold ${controller.gold}`);
     expect(upgraded.level).toBe(2);
     expect(upgraded.value).toBe(10 + upgradeCost);
     expect(controller.gold).toBe(1_000 - 10 - upgradeCost);
@@ -55,8 +69,14 @@ describe('GameController core logic', () => {
     controller.purchaseUpgrade('u1'); // 1.1x
     controller.purchaseUpgrade('u2'); // 1.2x
 
-    expect(controller.purchasedUpgrades.size).toBe(2);
-    expect(controller.getGlobalMultiplier()).toBeCloseTo(1.32, 5);
+    const upgradesCount = controller.purchasedUpgrades.size;
+    const multiplier = controller.getGlobalMultiplier();
+    const expected = 1.32;
+    console.log(`\n[GameController Core] Test: "applies global multipliers after purchasing upgrades"`);
+    console.log(`  Expected: 2 upgrades, ${expected} multiplier`);
+    console.log(`  Result:   ${upgradesCount} upgrade(s), ${multiplier.toFixed(5)} multiplier`);
+    expect(upgradesCount).toBe(2);
+    expect(multiplier).toBeCloseTo(expected, 5);
   });
 
   it('persists and reloads game state via save provider', async () => {
@@ -69,6 +89,9 @@ describe('GameController core logic', () => {
     const reloaded = new GameController(provider);
     await reloaded.init();
 
+    console.log(`\n[GameController Core] Test: "persists and reloads game state via save provider"`);
+    console.log(`  Expected: Gold 490, Level 4, Size 8, 1 plant`);
+    console.log(`  Result:   Gold ${reloaded.gold}, Level ${reloaded.level}, Size ${reloaded.maxGardenSize}, ${reloaded.getPlants().length} plant(s)`);
     expect(reloaded.gold).toBe(490);
     expect(reloaded.level).toBe(4);
     expect(reloaded.maxGardenSize).toBe(8);
@@ -83,6 +106,9 @@ describe('GameController core logic', () => {
     controller.checkAchievements();
     await new Promise((r) => setImmediate(r));
 
+    console.log(`\n[GameController Core] Test: "unlocks achievements based on gold and persists them"`);
+    console.log(`  Expected: Achievements a2, a6 unlocked; ${notified.length} notifications`);
+    console.log(`  Result:   Unlocked: a2=${controller.unlockedAchievements.has('a2')}, a6=${controller.unlockedAchievements.has('a6')}; Notified: ${notified.join(', ')}`);
     expect(controller.unlockedAchievements.has('a2')).toBe(true);
     expect(controller.unlockedAchievements.has('a6')).toBe(true);
     expect(notified).toEqual(expect.arrayContaining(['a2', 'a6']));
@@ -98,7 +124,11 @@ describe('GameController core logic', () => {
     controller.purchaseGardenUpgrade('g1'); // +2 -> 8
     controller.purchaseGardenUpgrade('g2'); // +3 -> 11
 
-    expect(controller.maxGardenSize).toBe(11);
+    const expectedSize = 11;
+    console.log(`\n[GameController Core] Test: "increases garden capacity when purchasing garden upgrades sequentially"`);
+    console.log(`  Expected: Garden size ${expectedSize}, g2 purchased`);
+    console.log(`  Result:   Garden size ${controller.maxGardenSize}, g2=${controller.purchasedGardenUpgrades.has('g2')}`);
+    expect(controller.maxGardenSize).toBe(expectedSize);
     expect(controller.purchasedGardenUpgrades.has('g2')).toBe(true);
   });
 
@@ -109,7 +139,11 @@ describe('GameController core logic', () => {
     controller.purchasedUpgrades = new Set(UPGRADES_DATA.map(u => u.id));
     controller.tick(1); // compute gps and achievements
 
-    expect(controller.unlockedAchievements.has('a5')).toBe(true);
+    const achieved = controller.unlockedAchievements.has('a5');
+    console.log(`\n[GameController Core] Test: "unlocks Tycoon achievement via high GPS (multiplier stack)"`);
+    console.log(`  Expected: Achievement a5 (Tycoon) unlocked`);
+    console.log(`  Result:   a5 unlocked=${achieved}`);
+    expect(achieved).toBe(true);
   });
 
   it('resetGame uses injected reload function', async () => {
@@ -118,6 +152,9 @@ describe('GameController core logic', () => {
     const controller = new GameController(provider, () => { reloaded = true; });
 
     await controller.resetGame();
+    console.log(`\n[GameController Core] Test: "resetGame uses injected reload function"`);
+    console.log(`  Expected: Reload callback called (true)`);
+    console.log(`  Result:   Reload callback called (${reloaded})`);
     expect(reloaded).toBe(true);
   });
 
@@ -135,6 +172,10 @@ describe('GameController core logic', () => {
 
     const reload = new GameController(resilient);
     await reload.init();
+    
+    console.log(`\n[GameController Core] Test: "falls back to memory provider on primary failure"`);
+    console.log(`  Expected: Gold 42 (saved to fallback memory provider)`);
+    console.log(`  Result:   Gold ${reload.gold}`);
     expect(reload.gold).toBe(42);
   });
 
@@ -146,6 +187,11 @@ describe('GameController core logic', () => {
     }
     const failing = new ResilientSaveProvider(new FailingProvider(), new FailingProvider());
     const controller = new GameController(failing);
+    
+    console.log(`\n[GameController Core] Test: "throws when both providers fail during save"`);
+    console.log(`  Expected: saveGame() returns false`);
+    const result = await controller.saveGame();
+    console.log(`  Result:   saveGame() returned ${result}`);
     await expect(controller.saveGame()).resolves.toBe(false);
   });
 });
